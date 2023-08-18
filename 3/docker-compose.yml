@@ -1,0 +1,16 @@
+version: '3.9'
+services:
+  mysql:
+    image: mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: Password123
+    volumes:
+      - ./data/mysql:/var/lib/mysql
+  flask_api:
+    build: .
+    ports:
+      - '8000:8000'
+  nginx:
+    image: nginx:1.14-alpine
+    depends_on:
+      - mysql
